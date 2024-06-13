@@ -23,5 +23,6 @@ void stack_display(StackArrayList s);
 void stack_visualize(StackArrayList s);
 
 //create a function that would get all even numbers and return as new stack removing from the old stack
+StackArrayList stack_getAllEvenNumbers(StackArrayList *s);
 
 #endif

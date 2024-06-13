@@ -28,7 +28,6 @@ bool stack_push(StackArrayList *s, int elem)
 		s->top++;
 		s->data[s->top] = elem;
 	} else {
-		printf("\nStack is Full!\n");
 		returnBool = false;
 	}
 	return returnBool;
@@ -39,7 +38,6 @@ bool stack_pop(StackArrayList *s)
 	if (!isEmpty(*s)){
 		s->top--;
 	} else {
-		printf("\nStack is Empty!\n");
 		returnBool = false;
 	}
 	return returnBool;
@@ -49,16 +47,40 @@ int stack_peek(StackArrayList s)
 	return s.data[s.top];
 }
 
+StackArrayList stack_getAllEvenNumbers(StackArrayList *s)
+{
+	StackArrayList returnStack;
+	returnStack = createStack();
+	do {
+    	if (stack_peek(*s)%2 == 0) {
+    		stack_push(&returnStack, stack_peek(*s));
+		} 
+	} while (stack_pop(s));
+	return returnStack;
+}
+
 void stack_display(StackArrayList s)
 {
-	do {
-		printf("%d ", stack_peek(s));
+    StackArrayList temp = createStack();
+
+    do {
+    	stack_push(&temp, stack_peek(s));
 	} while (stack_pop(&s));
+	
+	printf("\nDisplay Stack:\n");
+	do {
+		printf("%d ", stack_peek(temp));
+    	stack_push(&s, stack_peek(temp));
+	} while (stack_pop(&temp));
 }
 void stack_visualize(StackArrayList s)
 {
+	printf("Stack Visualization");
 	printf("\n%-7s %-7s %-5s\n", "Index", "Data", "Status");
-	printf("=======================\n");
-	
-	
+    printf("=======================\n");
+    
+    int x;
+    for (x = 0; x <= s.top; x++) {
+        printf("%-7d %-7d %-5s\n", x, s.data[x], x == s.top ? "Top" : "");
+    }
 }
