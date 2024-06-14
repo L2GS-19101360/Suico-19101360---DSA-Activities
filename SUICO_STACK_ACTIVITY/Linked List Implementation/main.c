@@ -16,5 +16,11 @@ int main(int argc, char *argv[]) {
 	
 	stack_visualize(headPtr);
 	stack_display(headPtr);
+	
+	printf("\n\nGetting All Even Numbers:\n");
+	StackLinkedList evenStackList;
+	evenStackList = stack_getAllEvenNumbers(&headPtr);
+	stack_visualize(evenStackList);
+	stack_display(evenStackList);
 	return 0;
 }
