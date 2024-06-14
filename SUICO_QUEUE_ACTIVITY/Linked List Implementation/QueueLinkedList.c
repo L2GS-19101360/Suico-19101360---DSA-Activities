@@ -34,31 +34,32 @@ bool Enqueue(Queue *q, int elem)
 }
 int Front(Queue q)
 {
-	return q.front->data;
+	return (!isEmpty(q)) ? q.front->data : -1;
 }
 bool Dequeue(Queue *q)
 {
-	int retBool = false;
-	NodePtr temp;
-	if (!isEmpty(*q)) {
-		temp = q->front;
-		q->front = temp->next;
-		free(temp);
-		
-		if (q->front == q->rear) {
-			q->front = q->rear = NULL;
-		}	
-	}
-	return retBool;
+	bool retBool = false;
+    NodePtr temp;
+    if (!isEmpty(*q)) {
+        temp = q->front;
+        q->front = temp->next;
+        free(temp);
+        
+        if (q->front == NULL) {
+            q->rear = NULL;
+        }
+        retBool = true;
+    }
+    return retBool;
 }
 int Rear(Queue q)
 {
-	return q.rear->data;
+	return (!isEmpty(q)) ? q.rear->data : -1;
 }
 
 bool isEmpty(Queue q)
 {
-	return (q.front == NULL && q.rear == NULL) ? true : false;
+	return (q.front == NULL && q.rear == NULL);
 }
 
 void displayQueue(Queue q)
