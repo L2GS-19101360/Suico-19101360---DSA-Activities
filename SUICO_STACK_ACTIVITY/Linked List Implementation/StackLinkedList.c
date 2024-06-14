@@ -57,7 +57,18 @@ int stack_peek(StackLinkedList s)
 
 void stack_display(StackLinkedList s)
 {
+	StackLinkedList tempStack = createStack();
+	while (!isEmpty(s)){
+        stack_push(stack_peek(s), &tempStack);
+        stack_pop(&s);
+	}
 	
+	printf("\nDisplay Stack:\n");
+	while (!isEmpty(tempStack)){
+		printf("%d ", stack_peek(tempStack));
+        stack_push(stack_peek(tempStack), &s);
+        stack_pop(&tempStack);
+	}
 }
 void stack_visualize(StackLinkedList s)
 {
@@ -75,5 +86,12 @@ void stack_visualize(StackLinkedList s)
 //create a function that would get all even numbers and return as new stack removing from the old stack
 StackLinkedList stack_getAllEvenNumbers(StackLinkedList *s)
 {
-	
+	StackLinkedList returnStack = createStack();
+	while (!isEmpty(*s)){
+        if (stack_peek(*s)%2 == 0) {
+        	stack_push(stack_peek(*s), &returnStack);
+		}
+        stack_pop(s);
+	}
+	return returnStack;
 }
