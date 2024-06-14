@@ -1,6 +1,6 @@
 # Suico-19101360---DSA-Activities
 
-DSA Activity 1:
+DSA Activity 1: SUICO_ARRAY_ACTIVITY
 
 DSA Activity 2:
 
