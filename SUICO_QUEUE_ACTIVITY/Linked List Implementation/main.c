@@ -15,13 +15,16 @@ int main(int argc, char *argv[]) {
 	Enqueue(&queueList, 13);
 	Enqueue(&queueList, 90);
 	displayQueue(queueList);
+	printf("\nFront: %d Rear: %d", Front(queueList), Rear(queueList));
 	
 	printf("\n\nAfter Dequeue:\n");
 	Dequeue(&queueList);
 	displayQueue(queueList);
+	printf("\nFront: %d Rear: %d", Front(queueList), Rear(queueList));
 	
 	printf("\n\nAfter Dequeue:\n");
 	Dequeue(&queueList);
 	displayQueue(queueList);
+	printf("\nFront: %d Rear: %d", Front(queueList), Rear(queueList));
 	return 0;
 }
