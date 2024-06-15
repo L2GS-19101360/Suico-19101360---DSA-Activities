@@ -14,17 +14,14 @@ int main(int argc, char *argv[]) {
 	Enqueue(&queueList, 54);
 	Enqueue(&queueList, 13);
 	Enqueue(&queueList, 90);
+	visualizeQueue(queueList);
 	displayQueue(queueList);
-	printf("\nFront: %d Rear: %d", Front(queueList), Rear(queueList));
 	
-	printf("\n\nAfter Dequeue:\n");
-	Dequeue(&queueList);
-	displayQueue(queueList);
-	printf("\nFront: %d Rear: %d", Front(queueList), Rear(queueList));
+	printf("\n\nGetting All Even Numbers:\n");
+	Queue evenQueueList;
+	evenQueueList = getAllEvenNumbers(&queueList);
+	visualizeQueue(evenQueueList);
+	displayQueue(evenQueueList);
 	
-	printf("\n\nAfter Dequeue:\n");
-	Dequeue(&queueList);
-	displayQueue(queueList);
-	printf("\nFront: %d Rear: %d", Front(queueList), Rear(queueList));
 	return 0;
 }

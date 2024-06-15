@@ -23,5 +23,8 @@ int Rear(Queue q);
 bool isEmpty(Queue q);
 
 void displayQueue(Queue q);
+void visualizeQueue(Queue q);
+
+Queue getAllEvenNumbers(Queue *q);
 
 #endif
