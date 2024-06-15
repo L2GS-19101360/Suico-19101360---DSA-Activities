@@ -5,21 +5,21 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char *argv[]) {
-	StackLinkedList headPtr = NULL;
-	headPtr = createStack();
+	Stack stackList;
+	stackList = createStack();
 	
-	stack_push(59, &headPtr);
-	stack_push(46, &headPtr);
-	stack_push(54, &headPtr);
-	stack_push(13, &headPtr);
-	stack_push(90, &headPtr);
+	stack_push(59, &stackList);
+	stack_push(46, &stackList);
+	stack_push(54, &stackList);
+	stack_push(13, &stackList);
+	stack_push(90, &stackList);
 	
-	stack_visualize(headPtr);
-	stack_display(headPtr);
+	stack_visualize(stackList);
+	stack_display(stackList);
 	
 	printf("\n\nGetting All Even Numbers:\n");
-	StackLinkedList evenStackList;
-	evenStackList = stack_getAllEvenNumbers(&headPtr);
+	Stack evenStackList;
+	evenStackList = stack_getAllEvenNumbers(&stackList);
 	stack_visualize(evenStackList);
 	stack_display(evenStackList);
 	return 0;
