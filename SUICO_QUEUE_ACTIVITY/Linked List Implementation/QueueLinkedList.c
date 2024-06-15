@@ -64,11 +64,40 @@ bool isEmpty(Queue q)
 
 void displayQueue(Queue q)
 {
-	NodePtr trav;
-	
-	printf("Front -> ");
-	for (trav = q.front; trav != NULL; trav = trav->next) {
-		printf("%d -> ", trav->data);
-	}
-	printf("Rear");
+    Queue tempQueue = createQueue();
+    while (!isEmpty(q)){
+        Enqueue(&tempQueue, Front(q));
+        Dequeue(&q);
+    }
+    
+    printf("\nDisplay Queue:\n");
+    while (!isEmpty(tempQueue)){
+        printf("%d ", Front(tempQueue));
+        Enqueue(&q, Front(tempQueue));
+        Dequeue(&tempQueue);
+    }
+    printf("\n");
+}
+
+void visualizeQueue(Queue q)
+{
+    printf("Queue Visualization");
+    printf("\n%-7s %-7s %-5s\n", "Index", "Data", "Status");
+    printf("=======================\n");
+    
+    int x;
+    NodePtr trav;
+    for (x = 0, trav = q.front; trav != NULL; x++, trav = trav->next) {
+        printf("%-7d %-7d %-5s\n", x, trav->data, trav == q.front ? "Head" : (trav == q.rear ? "Rear" : ""));
+    }
+}
+
+Queue getAllEvenNumbers(Queue *q)
+{
+	Queue tempQueue = createQueue();
+    while (!isEmpty(*q)){
+        Enqueue(&tempQueue, Front(*q));
+        Dequeue(q);
+    }
+    return tempQueue;
 }
