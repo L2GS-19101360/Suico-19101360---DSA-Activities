@@ -3,61 +3,60 @@
 #include <stdbool.h>
 #include "StackLinkedList.h"
 
-void initStack(StackLinkedList *s)
+void initStack(Stack *s)
 {
-	(*s)->top = NULL;
+	s->top = NULL;
 }
-StackLinkedList createStack()
+Stack createStack()
 {
-	StackLinkedList stack = (StackLinkedList)malloc(sizeof(StackLinkedList));
-	if (stack != NULL) {
-		initStack(&stack);
-	}
-	return stack;
+	Stack createStack;
+	initStack(&createStack);
+	return createStack;
 }
 
-bool stack_push(int elem, StackLinkedList *s)
+bool isEmpty(Stack s)
 {
-	StackNode *temp = (StackNode *)malloc(sizeof(StackNode));
+	return (s.top == NULL);
+}
+
+bool stack_push(int elem, Stack *s)
+{
 	bool retBool = false;
+	Node *temp = (Node *)malloc(sizeof(Node));
 	if (temp != NULL) {
 		temp->data = elem;
 		temp->next = NULL;
 		
-		if ((*s)->top == NULL) {
-			(*s)->top = temp;
+		if (s->top == NULL) {
+			s->top = temp;
 		} else {
-			temp->next = (*s)->top;
-			(*s)->top = temp;
+			temp->next = s->top;
+			s->top = temp;
 		}
 		retBool = true;
 	}
 	return retBool;
 }
-bool isEmpty(StackLinkedList s)
+bool stack_pop(Stack *s)
 {
-	return ((*s).top == NULL) ? true : false;
-}
-bool stack_pop(StackLinkedList *s)
-{
-	StackLinkedList temp;
-	bool retBool = true;
+	bool retBool = false;
+	NodePtr temp;
 	if (!isEmpty(*s)) {
-		temp = *s;
-		(*s)->top = temp->top->next;
-	} else {
-		retBool = false;
+		temp = s->top;
+		s->top = temp->next;
+		free(temp);
+		retBool = true;
 	}
 	return retBool;
 }
-int stack_peek(StackLinkedList s)
+int stack_peek(Stack s)
 {
-	return s->top->data;
+	return s.top->data;
 }
 
-void stack_display(StackLinkedList s)
+void stack_display(Stack s)
 {
-	StackLinkedList tempStack = createStack();
+	Stack tempStack = createStack();
 	while (!isEmpty(s)){
         stack_push(stack_peek(s), &tempStack);
         stack_pop(&s);
@@ -70,23 +69,23 @@ void stack_display(StackLinkedList s)
         stack_pop(&tempStack);
 	}
 }
-void stack_visualize(StackLinkedList s)
+void stack_visualize(Stack s)
 {
 	printf("Stack Visualization");
 	printf("\n%-7s %-7s %-5s\n", "Index", "Data", "Status");
     printf("=======================\n");
     
     int x;
-    StackNode *trav;
-	for (x = 0, trav = s->top; trav != NULL; x++, trav = trav->next) {
+    NodePtr trav;
+	for (x = 0, trav = s.top; trav != NULL; x++, trav = trav->next) {
     	printf("%-7d %-7d %-5s\n", x, trav->data, trav->next == NULL ? "Top" : "");
 	}
 }
 
 //create a function that would get all even numbers and return as new stack removing from the old stack
-StackLinkedList stack_getAllEvenNumbers(StackLinkedList *s)
+Stack stack_getAllEvenNumbers(Stack *s)
 {
-	StackLinkedList returnStack = createStack();
+	Stack returnStack = createStack();
 	while (!isEmpty(*s)){
         if (stack_peek(*s)%2 == 0) {
         	stack_push(stack_peek(*s), &returnStack);

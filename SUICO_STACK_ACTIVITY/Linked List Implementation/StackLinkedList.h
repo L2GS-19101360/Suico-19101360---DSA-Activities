@@ -6,25 +6,25 @@
 typedef struct node {
 	int data;
 	struct node *next;
-}StackNode;
+}Node, *NodePtr;
 
 typedef struct stack {
-    StackNode *top;
-} *StackLinkedList;
+    NodePtr top;
+}Stack;
 
-void initStack(StackLinkedList *s);
-StackLinkedList createStack();
+void initStack(Stack *s);
+Stack createStack();
 
-bool stack_push(int elem, StackLinkedList *s);
-bool stack_pop(StackLinkedList *s);
-int stack_peek(StackLinkedList s);
-bool isFull(StackLinkedList s);
-bool isEmpty(StackLinkedList s);
+bool stack_push(int elem, Stack *s);
+bool stack_pop(Stack *s);
+int stack_peek(Stack s);
+bool isFull(Stack s);
+bool isEmpty(Stack s);
 
-void stack_display(StackLinkedList s);
-void stack_visualize(StackLinkedList s);
+void stack_display(Stack s);
+void stack_visualize(Stack s);
 
 //create a function that would get all even numbers and return as new stack removing from the old stack
-StackLinkedList stack_getAllEvenNumbers(StackLinkedList *s);
+Stack stack_getAllEvenNumbers(Stack *s);
 
 #endif
