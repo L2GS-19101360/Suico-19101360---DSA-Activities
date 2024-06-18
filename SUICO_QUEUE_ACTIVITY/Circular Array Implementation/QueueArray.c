@@ -52,7 +52,7 @@ int Rear(CircularArray q)
 
 bool isEmpty(CircularArray q)
 {
-	return (q.front == (q.rear + 1)%MAX);
+	return (q.front == (q.rear + 1)%MAX) || q.front == -1;
 }
 bool isFull(CircularArray q)
 {
