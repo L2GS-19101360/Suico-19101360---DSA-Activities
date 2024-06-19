@@ -13,5 +13,10 @@ int main(int argc, char *argv[]) {
 	Enqueue(&queue, 33);
 	visualizeQueue(queue);
 	displayQueue(queue);
+	
+	printf("\n\nGetting All Even Numbers:\n");
+	CircularArray evenNumbers = getAllEvenNumbers(&queue);
+	visualizeQueue(evenNumbers);
+	displayQueue(evenNumbers);
 	return 0;
 }

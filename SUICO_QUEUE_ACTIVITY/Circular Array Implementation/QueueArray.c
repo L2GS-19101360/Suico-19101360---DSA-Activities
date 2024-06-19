@@ -23,6 +23,7 @@ bool Enqueue(CircularArray *q, int elem)
 		if (q->front == -1) {
 			q->front = q->rear;
 		}
+		retBool = true;
 	} else {
 		printf("Queue is Full\n");
 	}
@@ -40,6 +41,7 @@ bool Dequeue(CircularArray *q)
 		if (q->front == q->rear) { 
 			q->front = q->rear = -1;
 		}
+		retBool = true;
 	} else {
 		printf("Queue is Empty\n");
 	}
@@ -62,13 +64,17 @@ bool isFull(CircularArray q)
 void displayQueue(CircularArray q)
 {
 	CircularArray temp = createQueue();
-	while(!isEmpty(q)) {
-		Enqueue(&temp, Front(q));
-		Dequeue(&q);
-	}
+	int i;
+	for (i = q.front; i != q.rear; i = (i + 1) % MAX) {
+        Enqueue(&temp, q.data[i]);
+    }
+    Enqueue(&temp, q.data[q.rear]);
 	
 	printf("\nDisplay Queue:\n");
-	visualizeQueue(temp);
+	for (i = temp.front; i != temp.rear; i = (i + 1) % MAX) {
+        printf("%d ", temp.data[i]);
+    }
+    printf("%d ", temp.data[temp.rear]);
 }
 void visualizeQueue(CircularArray q)
 {
@@ -85,5 +91,15 @@ void visualizeQueue(CircularArray q)
 
 CircularArray getAllEvenNumbers(CircularArray *q)
 {
-	
+	CircularArray evenQueue = createQueue();
+    int i;
+    for (i = q->front; i != q->rear; i = (i + 1) % MAX) {
+        if (q->data[i] % 2 == 0) {
+            Enqueue(&evenQueue, q->data[i]);
+        }
+    }
+    if (q->data[q->rear] % 2 == 0) {
+        Enqueue(&evenQueue, q->data[q->rear]);
+    }
+    return evenQueue;
 }
