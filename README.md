@@ -11,3 +11,5 @@ DSA Activity 4: SUICO_QUEUE_ACTIVITY - Linked List Implementation - 6/14/2024 - 
 DSA Activity 5: SUICO_QUEUE_ACTIVITY - Circular Array Implementation - 6/18/2024 - https://github.com/L2GS-19101360/Suico-19101360---DSA-Activities/tree/main/SUICO_QUEUE_ACTIVITY/Circular%20Array%20Implementation
 
 DSA Activity 6: SUICO_FCFS_ACTIVITY - 6/26/2024 - https://github.com/L2GS-19101360/Suico-19101360---DSA-Activities/tree/main/SUICO_FCFS_ACTIVITY
+
+DSA Activity 7: SUICO_SET_ACTIVITY - 6/21/2024 - 
