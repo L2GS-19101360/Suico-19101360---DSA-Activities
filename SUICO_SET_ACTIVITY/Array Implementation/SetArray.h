@@ -5,11 +5,11 @@
 #define MAX 8
 
 typedef struct {
-    int binary[MAX];
-    int data[MAX];
-    int dataCount;
-    int binaryCount;
-} SetArray;
+	int binary[MAX];
+	int data[MAX];
+	int dataCount;
+	int binaryCount;
+}SetArray;
 
 SetArray createSet();
 void initSet(SetArray *set);
