@@ -8,5 +8,6 @@ int main(void) {
     FCFSQueue FQHead = createFCFS();
     populateFCFS(&FQHead);
     fcfsScheduling(&FQHead);
+    displayFCFS(FQHead);
 	return 0;
 }

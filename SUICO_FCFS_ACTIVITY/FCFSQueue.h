@@ -4,8 +4,8 @@
 
 typedef struct {
 	char processId;
-	int arrivalTime;
 	int burstTime;
+	int arrivalTime;
 }ProcessData;
 
 typedef struct node {
@@ -30,5 +30,7 @@ bool DequeueProcess(FCFSQueue *fq);
 ProcessNodePtr Rear(FCFSQueue fq);
 
 bool isEmpty(FCFSQueue fq);
+
+void displayFCFS(FCFSQueue fq);
 
 #endif
