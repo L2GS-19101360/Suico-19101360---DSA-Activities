@@ -6,7 +6,6 @@ typedef struct {
 	char processId;
 	int arrivalTime;
 	int burstTime;
-	int executionTime;
 }ProcessData;
 
 typedef struct node {
@@ -21,15 +20,14 @@ typedef struct {
 
 FCFSQueue createFCFS();
 void initFCFS(FCFSQueue *fq);
-ProcessData emptyProcess();
+void populateFCFS(FCFSQueue *fq);
 
-void populateFCFSQueue(FCFSQueue *fq);
-void displayFCFSQueue(FCFSQueue fq);
+void fcfsScheduling(FCFSQueue *fq);
 
 bool EnqueueProcess(FCFSQueue *fq, ProcessData p);
-ProcessData Front(FCFSQueue fq);
+ProcessNodePtr Front(FCFSQueue fq);
 bool DequeueProcess(FCFSQueue *fq);
-ProcessData Rear(FCFSQueue fq);
+ProcessNodePtr Rear(FCFSQueue fq);
 
 bool isEmpty(FCFSQueue fq);
 
