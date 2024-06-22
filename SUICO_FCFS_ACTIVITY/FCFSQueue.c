@@ -13,39 +13,34 @@ void initFCFS(FCFSQueue *fq)
 {
 	fq->front = fq->rear = NULL;
 }
-ProcessData emptyProcess() 
+void populateFCFS(FCFSQueue *fq)
 {
-    ProcessData p;
-    p.processId = p.arrivalTime = -1, p.burstTime = p.executionTime = -1;
-    return p;
-}
-
-void populateFCFSQueue(FCFSQueue *fq)
-{
-	int inputs, x;
-	ProcessData p;
-	printf("Enter Number of Process: "); scanf("%d", &inputs); printf("\n");
-	for (x = 0; x < inputs; x++) {
-		printf("Process %c\n", 'A' + x); p.processId = 'A' + x;
-		printf("Arrival Time: "); scanf("%d", &p.arrivalTime);
-		printf("Burst Time: "); scanf("%d", &p.burstTime);
-		EnqueueProcess(fq, p);
-		printf("\n");
-	}
-}
-void displayFCFSQueue(FCFSQueue fq)
-{
-	if (!isEmpty(fq)) {
-		printf("FCFS Queue Visualization\n");
-	    printf("\n%-10s %-13s %-10s %-15s %-13s %-15s\n", "Process ID", "Arrival Time", "Burst Time", "Execution Time", "Waiting Time", "Turnaround Time");
-	    printf("==========================================================================\n");
+	ProcessData data[] = {
+		{'A', 2, 1},
+		{'B', 0, 2},
+		{'C', 1, 3},
+	};
+	int x, s = sizeof(data)/sizeof(data[0]);
 	
-	    
-	} else {
-		printf("FCFS Queue is Empty!"); 
+	for (x = 0; x < s; x++) {
+		EnqueueProcess(fq, data[x]);
 	}
 }
-
+void fcfsScheduling(FCFSQueue *fq)
+{
+	FCFSQueue temp = createFCFS();
+	ProcessNodePtr frontNode, checkNode;
+	while (!isEmpty(*fq)) {
+		checkNode = Front(*fq);
+		DequeueProcess(fq);
+		frontNode = Front(*fq);
+		if (checkNode->process.arrivalTime >= frontNode->process.arrivalTime) {
+			
+		} else {
+			
+		}
+	}
+}
 bool EnqueueProcess(FCFSQueue *fq, ProcessData p)
 {
 	bool retBool = false;
@@ -63,30 +58,29 @@ bool EnqueueProcess(FCFSQueue *fq, ProcessData p)
 	}
 	return retBool;
 }
-ProcessData Front(FCFSQueue fq)
+ProcessNodePtr Front(FCFSQueue fq)
 {
-	return (!isEmpty(fq)) ? fq.front->process : emptyProcess();
+	return (!isEmpty(fq)) ? fq.front : NULL;
 }
 bool DequeueProcess(FCFSQueue *fq)
 {
 	bool retBool = false;
 	ProcessNodePtr temp;
-	if (!isEmpty(*fq)) {
+	if (isEmpty(*fq)) {
 		temp = fq->front;
 		fq->front = temp->next;
 		free(temp);
 		if (fq->front == NULL) {
 			fq->rear = NULL;
 		}
-		return retBool;
+		retBool = true;
 	}
 	return retBool;
 }
-ProcessData Rear(FCFSQueue fq)
+ProcessNodePtr Rear(FCFSQueue fq)
 {
-	return (!isEmpty(fq)) ? fq.rear->process : emptyProcess();
+	return (!isEmpty(fq)) ? fq.rear : NULL;
 }
-
 bool isEmpty(FCFSQueue fq)
 {
 	return (fq.front == NULL && fq.rear == NULL);
