@@ -46,16 +46,19 @@ void fcfsScheduling(FCFSQueue *fq)
 void displayFCFS(FCFSQueue fq) 
 {
     if (!isEmpty(fq)) {
-    	printf("FCFS Queue Visualization\n");
-	    printf("+------------+------------+--------------+----------------+--------------+-----------------+\n");
-	    printf("| Process ID | Burst Time | Arrival Time | Execution Time | Waiting Time | Turnaround Time |\n");
-	    printf("+------------+------------+--------------+----------------+--------------+-----------------+\n");
-	
-	    int count = 0, currentTime = 0, executionTime, waitingTime, turnaroundTime, totalWaitingTime = 0, totalTurnoverTime = 0;
-	    ProcessNodePtr temp = fq.front;
-	
-	    while (temp != NULL) {
-	        ProcessData p = temp->process;
+        FCFSQueue fcfs = fq;
+        printf("FCFS Queue Visualization\n");
+        printf("+------------+------------+--------------+----------------+--------------+-----------------+\n");
+        printf("| Process ID | Burst Time | Arrival Time | Execution Time | Waiting Time | Turnaround Time |\n");
+        printf("+------------+------------+--------------+----------------+--------------+-----------------+\n");
+
+        int count = 0, currentTime = 0, executionTime, waitingTime, turnaroundTime, totalWaitingTime = 0, totalTurnoverTime = 0;
+        ProcessNodePtr temp;
+        ProcessData p;
+
+        while (!isEmpty(fcfs)) {
+            temp = Front(fcfs);
+            p = temp->process;
 	
 	        if (currentTime < p.arrivalTime) {
 	            currentTime = p.arrivalTime;
@@ -68,26 +71,26 @@ void displayFCFS(FCFSQueue fq)
 	        
 	        totalWaitingTime += waitingTime;
 	        totalTurnoverTime += turnaroundTime;
-	
-	        printf("| %-10c | %-10d | %-12d | %-14d | %-12d | %-15d |\n", p.processId, 
-																		  p.burstTime, 
-																		  p.arrivalTime, 
-																		  executionTime, 
-																		  waitingTime, 
-																		  turnaroundTime);
-	
-	        temp = temp->next;
-	        count++;
-	    }
-	
-	    printf("+------------+------------+--------------+----------------+--------------+-----------------+\n");
+            count++;
+
+            printf("| %-10c | %-10d | %-12d | %-14d | %-12d | %-15d |\n", p.processId, 
+                                                                          p.burstTime, 
+                                                                          p.arrivalTime, 
+                                                                          executionTime, 
+                                                                          waitingTime, 
+                                                                          turnaroundTime);
+
+            DequeueProcess(&fcfs);
+        }
+        printf("+------------+------------+--------------+----------------+--------------+-----------------+\n");
         printf("| %-10s | %-10s | %-12s | %-14s | %-12d | %-15d |\n", "", "", "", "Total ", totalWaitingTime, totalTurnoverTime);
         printf("| %-10s | %-10s | %-12s | %-14s | %-12.2f | %-15.2f |\n", "", "", "", "Average ", (float)totalWaitingTime / count, (float)totalTurnoverTime / count);
         printf("+------------+------------+--------------+----------------+--------------+-----------------+\n");
-	} else {
-		printf("FCFS is Empty!\n");
-	}
+    } else {
+        printf("FCFS is Empty!\n");
+    }
 }
+
 bool EnqueueProcess(FCFSQueue *fq, ProcessData p)
 {
 	bool retBool = false;
@@ -132,4 +135,3 @@ bool isEmpty(FCFSQueue fq)
 {
 	return (fq.front == NULL && fq.rear == NULL);
 }
-
