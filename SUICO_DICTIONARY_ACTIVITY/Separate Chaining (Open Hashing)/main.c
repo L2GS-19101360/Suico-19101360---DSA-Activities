@@ -13,6 +13,10 @@ int main(int argc, char *argv[]) {
 	insertHashValue("Orange", &od);
 	insertHashValue("Violet", &od);
 	insertHashValue("Green", &od);
-	printHashTable(od);
+	displayOpenDictionary(od);
+	insertHashValue("Black", &od);
+	displayOpenDictionary(od);
+//	insertHashValue("White", &od);
+//	displayOpenDictionary(od);
 	return 0;
 }

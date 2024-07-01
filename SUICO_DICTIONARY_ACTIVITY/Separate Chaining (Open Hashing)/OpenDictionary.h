@@ -18,6 +18,6 @@ void INITIALIZE(OPENDICT *od);
 bool isOverThreshold(OPENDICT od);
 void insertHashValue(char string[], OPENDICT *od);
 unsigned int hashValue(char string[], OPENDICT od);
-void printHashTable(OPENDICT od);
+void displayOpenDictionary(OPENDICT od);
 
 #endif
