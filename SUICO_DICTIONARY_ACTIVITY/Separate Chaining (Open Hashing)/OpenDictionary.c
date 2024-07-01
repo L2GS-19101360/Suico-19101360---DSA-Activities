@@ -4,9 +4,9 @@
 #include <string.h>
 #include "OpenDictionary.h"
 
-void printHashTable(OPENDICT od)
+void displayOpenDictionary(OPENDICT od)
 {
-	printf("Open Hashing Dictionary:\n");
+    printf("Open Hashing Dictionary:\n");
     int x;
     NODEPTR current;
     for (x = 0; x < od.size; x++) {
@@ -30,6 +30,7 @@ void insertHashValue(char string[], OPENDICT *od)
 			for (trav = &(od->hashTable[hashIndex]); *trav != NULL && (strcmp(temp->string, (*trav)->string) > 0); trav = &(*trav)->next) {}
 			temp->next = *trav;
 			*trav = temp;	
+			od->count++;
 		}
 	}
 }
@@ -38,7 +39,7 @@ unsigned int hashValue(char string[], OPENDICT od)
 	unsigned int hash = 0;
 	int x;
 	for (x = 0; x < strlen(string); x++) {
-		hash += string[x];
+		hash = 31 + hash + string[x];
 	}
 	return hash%od.size;
 }
