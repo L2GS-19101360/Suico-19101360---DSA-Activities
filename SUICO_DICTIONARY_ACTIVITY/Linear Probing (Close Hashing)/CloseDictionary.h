@@ -19,7 +19,10 @@ typedef struct {
 void INITIALIZE(CLOSEDICT *cd);
 bool isOverThreshold(CLOSEDICT cd);
 void insertHashValue(char string[], CLOSEDICT *cd);
+void deleteHashValue(char string[], CLOSEDICT *cd);
+bool memberHashValue(char string[], CLOSEDICT cd);
 unsigned int hashValue(char string[], CLOSEDICT cd);
 void printHashTable(CLOSEDICT cd);
+void resizeCloseDictionary(CLOSEDICT *cd);
 
 #endif
