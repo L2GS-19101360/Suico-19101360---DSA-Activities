@@ -17,7 +17,10 @@ typedef struct {
 void INITIALIZE(OPENDICT *od);
 bool isOverThreshold(OPENDICT od);
 void insertHashValue(char string[], OPENDICT *od);
+void deleteHashValue(char string[], OPENDICT *od);
+bool memberHashValue(char string[], OPENDICT od);
 unsigned int hashValue(char string[], OPENDICT od);
 void displayOpenDictionary(OPENDICT od);
+void resizeOpenDictionary(OPENDICT *od);
 
 #endif

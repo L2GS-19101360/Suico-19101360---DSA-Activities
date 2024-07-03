@@ -13,10 +13,20 @@ int main(int argc, char *argv[]) {
 	insertHashValue("Orange", &od);
 	insertHashValue("Violet", &od);
 	insertHashValue("Green", &od);
-	displayOpenDictionary(od);
 	insertHashValue("Black", &od);
 	displayOpenDictionary(od);
-//	insertHashValue("White", &od);
-//	displayOpenDictionary(od);
+	printf("After Resizing Hash Table:\n");
+	resizeOpenDictionary(&od);
+	insertHashValue("White", &od);
+	insertHashValue("Brown", &od);
+	insertHashValue("Pink", &od);
+	insertHashValue("Gray", &od);
+	displayOpenDictionary(od);
+	deleteHashValue("Green", &od);
+	deleteHashValue("Blue", &od);
+	displayOpenDictionary(od);
+	printf("Member Red? %s\n", memberHashValue("Red", od) ? "True" : "False");
+	printf("Member Blue? %s\n", memberHashValue("Blue", od) ? "True" : "False");
+	printf("Member Cyan? %s\n", memberHashValue("Cyan", od) ? "True" : "False");
 	return 0;
 }
