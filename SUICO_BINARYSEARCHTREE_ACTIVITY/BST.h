@@ -18,4 +18,17 @@ typedef struct node {
 	struct node *left, *right;
 }NodeType, *NodePtr;
 
+void INITIALIZEBST (NodePtr *bst);
+bool ISNULLBST(NodePtr bst);
+void POPULATEBST(NodePtr *bst);
+void INSERTNODE(Product item, NodePtr *bst);
+
+void BFS(NodePtr bst);
+
+void DFSPREORDER(NodePtr bst);
+void DFSINORDER(NodePtr bst);
+void DFSPOSTORDER(NodePtr bst);
+
+void PRINTPRODUCT(Product prod);
+
 #endif
