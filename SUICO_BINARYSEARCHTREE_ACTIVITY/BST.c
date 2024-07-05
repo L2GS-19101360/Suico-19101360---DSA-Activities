@@ -5,6 +5,8 @@
 #include <ctype.h>
 #include "BST.h"
 
+#define MAX 10
+
 void PRINTPRODUCT(Product prod)
 {
     printf("| %-12s | $%6.2f | %3d | %02d/%02d/%4d |\n", prod.prodName, 
@@ -14,9 +16,66 @@ void PRINTPRODUCT(Product prod)
 														 prod.expDate.day, 
 														 prod.expDate.year);
 }
-void BFS(NodePtr bst)
-{
+void BFS(NodePtr bst) {
+	QueueBST queue;
+	INITIALIZEQUEUE(&queue);
 	
+	if (bst != NULL) {
+		ENQUEUE(bst, &queue);
+		while (!ISEMPTY(queue)) {
+			NodePtr current = FRONT(queue);
+			PRINTPRODUCT(current->item);
+			DEQUEUE(&queue);
+			if (current->left != NULL) {
+				ENQUEUE(current->left, &queue);
+			}
+			if (current->right != NULL) {
+				ENQUEUE(current->right, &queue);
+			}
+		}
+	}
+	free(queue.queuePtr);
+}
+
+void ENQUEUE(NodePtr item, QueueBST *qbst) {
+	if (!ISFULL(*qbst)) {
+		qbst->rear = (qbst->rear + 1) % MAX;
+		qbst->queuePtr[qbst->rear] = item;
+		qbst->count++;
+		if (qbst->front == -1) {
+			qbst->front = qbst->rear;
+		}
+	}
+}
+
+NodePtr FRONT(QueueBST qbst) {
+	return (!ISEMPTY(qbst)) ? qbst.queuePtr[qbst.front] : NULL;
+}
+
+void DEQUEUE(QueueBST *qbst) {
+	if (!ISEMPTY(*qbst)) {
+		qbst->front = (qbst->front + 1) % MAX;
+		qbst->count--;
+		if (qbst->count == 0) {
+			qbst->front = qbst->rear = -1;
+		}
+	}
+}
+
+bool ISEMPTY(QueueBST qbst) {
+	return (qbst.count == 0);
+}
+
+bool ISFULL(QueueBST qbst) {
+	return (qbst.count == MAX);
+}
+
+void INITIALIZEQUEUE(QueueBST *qbst) {
+	qbst->queuePtr = (NodePtr *)malloc(sizeof(NodePtr) * MAX);
+	if (qbst->queuePtr != NULL) {
+		qbst->front = qbst->rear = -1;
+		qbst->count = 0;
+	}
 }
 void DFSPREORDER(NodePtr bst)
 {

@@ -18,12 +18,26 @@ typedef struct node {
 	struct node *left, *right;
 }NodeType, *NodePtr;
 
+typedef struct {
+	NodePtr *queuePtr;
+	int front;
+	int rear;
+	int count;
+}QueueBST;
+
 void INITIALIZEBST (NodePtr *bst);
 bool ISNULLBST(NodePtr bst);
 void POPULATEBST(NodePtr *bst);
 void INSERTNODE(Product item, NodePtr *bst);
 
 void BFS(NodePtr bst);
+
+void INITIALIZEQUEUE(QueueBST *qbst);
+void ENQUEUE(NodePtr item, QueueBST *qbst);
+void DEQUEUE(QueueBST *qbst);
+NodePtr FRONT(QueueBST qbst);
+bool ISEMPTY(QueueBST qbst);
+bool ISFULL(QueueBST qbst);
 
 void DFSPREORDER(NodePtr bst);
 void DFSINORDER(NodePtr bst);
