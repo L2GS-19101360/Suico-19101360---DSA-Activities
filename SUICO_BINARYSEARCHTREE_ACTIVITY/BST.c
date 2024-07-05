@@ -5,6 +5,43 @@
 #include <ctype.h>
 #include "BST.h"
 
+void PRINTPRODUCT(Product prod)
+{
+    printf("| %-12s | $%6.2f | %3d | %02d/%02d/%4d |\n", prod.prodName, 
+														 prod.prodPrice, 
+														 prod.prodQty,
+														 prod.expDate.month, 
+														 prod.expDate.day, 
+														 prod.expDate.year);
+}
+void BFS(NodePtr bst)
+{
+	
+}
+void DFSPREORDER(NodePtr bst)
+{
+	if (bst != NULL) {
+		PRINTPRODUCT(bst->item);
+		DFSPREORDER(bst->left);
+		DFSPREORDER(bst->right);
+	}
+}
+void DFSINORDER(NodePtr bst)
+{
+	if (bst != NULL) {
+		DFSINORDER(bst->left);
+		PRINTPRODUCT(bst->item);
+		DFSINORDER(bst->right);
+	}
+}
+void DFSPOSTORDER(NodePtr bst)
+{
+	if (bst != NULL) {
+		DFSPOSTORDER(bst->left);
+		DFSPOSTORDER(bst->right);
+		PRINTPRODUCT(bst->item);
+	}
+}
 void POPULATEBST(NodePtr *bst)
 {
 	Product data[] = {
