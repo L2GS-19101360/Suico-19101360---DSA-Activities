@@ -15,3 +15,5 @@ DSA Activity 6: SUICO_FCFS_ACTIVITY - 6/26/2024 - https://github.com/L2GS-191013
 DSA Activity 7: SUICO_SET_ACTIVITY - 6/21/2024 - Array Implementation - https://github.com/L2GS-19101360/Suico-19101360---DSA-Activities/tree/main/SUICO_SET_ACTIVITY/Array%20Implementation
 
 DSA Activity 8: SUICO_DICTIONARY_ACTIVITY - 6/24/2024 - https://github.com/L2GS-19101360/Suico-19101360---DSA-Activities/tree/main/SUICO_DICTIONARY_ACTIVITY
+
+DSA Activity 9: SUICO_BINARYSEARCHTREE_ACTIVITY - 7/5/2024 - 
