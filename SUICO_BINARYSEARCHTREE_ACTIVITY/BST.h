@@ -2,6 +2,8 @@
 #define BST
 #include "stdbool.h"
 
+#define MAX 10
+
 typedef struct {
 	int month, day, year;
 }Date;
@@ -29,6 +31,7 @@ void INITIALIZEBST (NodePtr *bst);
 bool ISNULLBST(NodePtr bst);
 void POPULATEBST(NodePtr *bst);
 void INSERTNODE(Product item, NodePtr *bst);
+void DELETENODE(char find[], NodePtr *bst);
 
 void BFS(NodePtr bst);
 

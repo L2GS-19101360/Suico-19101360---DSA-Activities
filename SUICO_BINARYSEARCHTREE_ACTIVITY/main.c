@@ -22,11 +22,11 @@ int main(int argc, char *argv[]) {
     getchar(); system("cls");
     
     //Adding More Product Data
-    printf("After Adding Bread Product:\n");
+    printf("After Adding Milk Product:\n");
     Product data[] = {
-	    {"Bread", 2.29, 75, {7, 1, 2024}},
-        {"Cheese", 4.99, 40, {6, 30, 2024}},
-        {"Yogurt", 1.79, 60, {6, 29, 2024}}
+        {"Milk", 0.79, 120, {7, 4, 2024}},
+        {"Yogurt", 1.79, 60, {6, 29, 2024}},
+        {"Ham", 5.49, 30, {7, 15, 2024}}
 	};
 	NodePtr *trav = &bst;
 	INSERTNODE(data[0], trav);
@@ -39,8 +39,8 @@ int main(int argc, char *argv[]) {
     printf("\nPostorder traversal:\n");
     DFSPOSTORDER(bst);
     getchar(); system("cls");
-    printf("After Adding Cheese and Yogurt Products:\n");
     
+	printf("After Adding Yogurt and Ham Products:\n");
 	INSERTNODE(data[1], trav);
 	INSERTNODE(data[2], trav);
 	printf("BFS Traversal:\n");
@@ -53,6 +53,42 @@ int main(int argc, char *argv[]) {
     DFSPOSTORDER(bst);
     getchar(); system("cls");
     
-	//Deleting Product Data
+    //After Deleting Bread Node
+    printf("After Deleting Apple Products:\n");
+    DELETENODE("Apple", trav);
+    printf("BFS Traversal:\n");
+	BFS(bst);
+	printf("\nPreorder traversal:\n");
+    DFSPREORDER(bst);
+    printf("\nInorder traversal:\n");
+    DFSINORDER(bst);
+    printf("\nPostorder traversal:\n");
+    DFSPOSTORDER(bst);
+    getchar(); system("cls");
+	
+	//After Deleting Grape Node
+    printf("After Deleting Grape Products:\n");
+    DELETENODE("Grape", trav);
+    printf("BFS Traversal:\n");
+	BFS(bst);
+	printf("\nPreorder traversal:\n");
+    DFSPREORDER(bst);
+    printf("\nInorder traversal:\n");
+    DFSINORDER(bst);
+    printf("\nPostorder traversal:\n");
+    DFSPOSTORDER(bst);
+    getchar(); system("cls");
+    
+    //After Deleting Ham Node
+    printf("After Deleting Ham Products:\n");
+    DELETENODE("Ham", trav);
+    printf("BFS Traversal:\n");
+	BFS(bst);
+	printf("\nPreorder traversal:\n");
+    DFSPREORDER(bst);
+    printf("\nInorder traversal:\n");
+    DFSINORDER(bst);
+    printf("\nPostorder traversal:\n");
+    DFSPOSTORDER(bst);
 	return 0;
 }

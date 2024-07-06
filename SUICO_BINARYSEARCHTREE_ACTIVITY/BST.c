@@ -5,7 +5,44 @@
 #include <ctype.h>
 #include "BST.h"
 
-#define MAX 10
+void DELETENODE(char findName[], NodePtr *bst)
+{
+    if (*bst == NULL) {
+        return;
+    } else {
+	    if ((strcmp((*bst)->item.prodName, findName)) > 0) {
+	        DELETENODE(findName, &(*bst)->left);
+	    } else if ((strcmp((*bst)->item.prodName, findName)) < 0) {
+	        DELETENODE(findName, &(*bst)->right);
+	    } else {
+			NodePtr temp;
+	
+	        if ((*bst)->left == NULL && (*bst)->right == NULL) {
+	            free(*bst);
+	            *bst = NULL;
+	        }
+	        else if ((*bst)->left == NULL) {
+	            temp = *bst;
+	            *bst = (*bst)->right;
+	            free(temp);
+	        } else if ((*bst)->right == NULL) {
+	            temp = *bst;
+	            *bst = (*bst)->left;
+	            free(temp);
+	        }
+	        else {
+	            temp = (*bst)->right;
+	            while (temp->left != NULL) {
+	                temp = temp->left;
+	            }
+	
+	            (*bst)->item = temp->item;
+	
+	            DELETENODE(temp->item.prodName, &(*bst)->right);
+	        }
+	    }
+	}
+}
 
 void PRINTPRODUCT(Product prod)
 {
@@ -105,10 +142,10 @@ void POPULATEBST(NodePtr *bst)
 {
 	Product data[] = {
 	    {"Apple", 0.99, 100, {7, 5, 2024}},
-	    {"Banana", 0.49, 150, {7, 6, 2024}},
-	    {"Orange", 0.79, 120, {7, 4, 2024}},
-	    {"Grapes", 2.99, 80, {7, 3, 2024}},
-	    {"Milk", 3.49, 50, {7, 2, 2024}}
+        {"Banana", 0.49, 150, {7, 6, 2024}},
+        {"Bread", 2.29, 75, {7, 1, 2024}},
+        {"Cheese", 4.99, 40, {6, 30, 2024}},
+        {"Grape", 2.99, 80, {7, 3, 2024}},
 	};
     int x, size = sizeof(data)/sizeof(data[0]);
     NodePtr *trav;
