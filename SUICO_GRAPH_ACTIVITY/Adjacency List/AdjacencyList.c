@@ -2,6 +2,66 @@
 #include <stdlib.h>
 #include "AdjacencyList.h"
 
+void removeVertex(Graph *adjacencyList, int vertex) 
+{
+    // Step 1: Remove all edges connected to the vertex
+    NodePtr temp = adjacencyList->array[vertex];
+    while (temp != NULL) {
+        removeEdge(adjacencyList, vertex, temp->vertex);
+        temp = adjacencyList->array[vertex];
+    }
+    // Step 2: Shift all vertices after the removed vertex
+    int i;
+    for (i = vertex; i < adjacencyList->numberVertices - 1; i++) {
+        adjacencyList->array[i] = adjacencyList->array[i + 1];
+    }
+    adjacencyList->array[adjacencyList->numberVertices - 1] = NULL;
+    // Step 3: Update all adjacency lists
+    for (i = 0; i < adjacencyList->numberVertices - 1; i++) {
+        temp = adjacencyList->array[i];
+        while (temp != NULL) {
+            if (temp->vertex > vertex) {
+                temp->vertex--;
+            }
+            temp = temp->next;
+        }
+    }
+
+    adjacencyList->numberVertices--;
+}
+void removeEdge(Graph *adjacencyList, int vertex1, int vertex2) 
+{
+    // Remove vertex2 from the adjacency list of vertex1
+    NodePtr temp = adjacencyList->array[vertex1];
+    NodePtr prev = NULL;
+    while (temp != NULL && temp->vertex != vertex2) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp != NULL) {
+        if (prev == NULL) {
+            adjacencyList->array[vertex1] = temp->next;
+        } else {
+            prev->next = temp->next;
+        }
+        free(temp);
+    }
+    // Remove vertex1 from the adjacency list of vertex2
+    temp = adjacencyList->array[vertex2];
+    prev = NULL;
+    while (temp != NULL && temp->vertex != vertex1) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp != NULL) {
+        if (prev == NULL) {
+            adjacencyList->array[vertex2] = temp->next;
+        } else {
+            prev->next = temp->next;
+        }
+        free(temp);
+    }
+}
 void initAdjacencyList(Graph *adjacencyList, int initialSize) 
 {
     adjacencyList->numberVertices = 0;
@@ -77,4 +137,3 @@ void displayAdjacencyList(Graph adjacencyList)
     }
     printf("\n");
 }
-

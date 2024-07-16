@@ -2,6 +2,30 @@
 #include <stdlib.h>
 #include "AdjacencyMatrix.h"
 
+void removeEdge(Graph *adjacencyMatrix, int v1, int v2)
+{
+	adjacencyMatrix->array[v1][v2] = 0;
+    adjacencyMatrix->array[v2][v1] = 0;
+}
+void removeVertex(Graph *adjacencyMatrix, int vertex)
+{
+    // Shift rows up
+    int i, j;
+    for (i = vertex; i < adjacencyMatrix->numberVertices - 1; i++) {
+        for (j = 0; j < adjacencyMatrix->numberVertices; j++) {
+            adjacencyMatrix->array[i][j] = adjacencyMatrix->array[i + 1][j];
+        }
+    }
+    // Shift columns left
+    for (i = 0; i < adjacencyMatrix->numberVertices - 1; i++) {
+        for (j = vertex; j < adjacencyMatrix->numberVertices - 1; j++) {
+            adjacencyMatrix->array[i][j] = adjacencyMatrix->array[i][j + 1];
+        }
+    }
+    // Decrease number of vertices
+    adjacencyMatrix->numberVertices--;
+}
+
 void addVertex(Graph *adjacencyMatrix)
 {
     if (adjacencyMatrix->numberVertices == adjacencyMatrix->maxVertices) {
@@ -17,7 +41,7 @@ void addVertex(Graph *adjacencyMatrix)
             newArray[x] = (int *)malloc(sizeof(int) * newMaxVertices);
         }
         
-		for (x = 0; x < adjacencyMatrix->maxVertices; x++) {
+        for (x = 0; x < adjacencyMatrix->maxVertices; x++) {
             for (y = 0; y < adjacencyMatrix->maxVertices; y++) {
                 newArray[x][y] = adjacencyMatrix->array[x][y];
             }
@@ -83,4 +107,6 @@ void initAdjacencyMatrix(Graph *adjacencyMatrix)
     }
     adjacencyMatrix->numberVertices = 0;
 }
+
+
 

@@ -20,6 +20,8 @@ void initAdjacencyList(Graph *adjacencyList, int initialSize);
 void addVertex(Graph *adjacencyList);
 NodePtr createNode(int vertex);
 void addEdge(Graph *adjacencyList, int vertex1, int vertex2);
+void removeVertex(Graph *adjacencyList, int vertex);
+void removeEdge(Graph *adjacencyList, int vertex1, int vertex2);
 void displayAdjacencyList(Graph adjacencyList);
 void resizeArray(Graph *adjacencyList);
 

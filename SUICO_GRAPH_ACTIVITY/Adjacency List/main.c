@@ -31,5 +31,14 @@ int main(int argc, char *argv[]) {
     addEdge(&adjacencyList, F, C);
     
 	displayAdjacencyList(adjacencyList);
+	
+	removeVertex(&adjacencyList, C);
+	
+	displayAdjacencyList(adjacencyList);
+	
+	removeEdge(&adjacencyList, A, D);
+	removeEdge(&adjacencyList, E, B);
+	
+	displayAdjacencyList(adjacencyList);
 	return 0;
 }

@@ -31,6 +31,15 @@ int main(int argc, char *argv[]) {
     addEdge(&adjacencyMatrix, F, C);
     
     displayAdjacencyMatrix(adjacencyMatrix);
+
+    removeVertex(&adjacencyMatrix, C);
+
+    displayAdjacencyMatrix(adjacencyMatrix);
+    
+    removeEdge(&adjacencyMatrix, A, D);
+    removeEdge(&adjacencyMatrix, E, B);
+    
+    displayAdjacencyMatrix(adjacencyMatrix);
     
     return 0;
 }

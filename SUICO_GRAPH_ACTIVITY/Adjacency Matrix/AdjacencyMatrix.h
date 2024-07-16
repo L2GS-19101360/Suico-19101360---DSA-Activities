@@ -14,6 +14,8 @@ typedef struct {
 void initAdjacencyMatrix(Graph *adjacencyMatrix);
 void addEdge(Graph *adjacencyMatrix, int v1, int v2);
 void addVertex(Graph *adjacencyMatrix);
+void removeVertex(Graph *adjacencyMatrix, int vertex);
+void removeEdge(Graph *adjacencyMatrix, int v1, int v2);
 void displayAdjacencyMatrix(Graph adjacencyMatrix);
 
 #endif
