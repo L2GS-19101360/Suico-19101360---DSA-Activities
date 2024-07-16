@@ -2,13 +2,18 @@
 #define ADJACENCY_MATRIX
 
 enum Vertices {
-	A, B, C, D, E
+    A, B, C, D, E, F, G, H
 };
 
-#define MAX 5
+typedef struct {
+    int maxVertices;
+    int numberVertices;
+    int **array;
+} Graph;
 
-void initAdjacencyMatrix(int adjacencyMatrix[][MAX]);
-void addEdge(int adjacencyMatrix[][MAX], int vertex1, int vertex2);
-void displayAdjacencyMatrix(int adjacencyMatrix[][MAX]);
+void initAdjacencyMatrix(Graph *adjacencyMatrix);
+void addEdge(Graph *adjacencyMatrix, int v1, int v2);
+void addVertex(Graph *adjacencyMatrix);
+void displayAdjacencyMatrix(Graph adjacencyMatrix);
 
 #endif
